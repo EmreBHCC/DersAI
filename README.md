@@ -1,16 +1,26 @@
-# dersai
+# DersAI
 
-A new Flutter project.
+DersAI, Flutter ile geliştirilmiş, Firebase tabanlı bir kullanıcı kayıt ve giriş uygulamasıdır.
 
-## Getting Started
+## 🚀 Özellikler
 
-This project is a starting point for a Flutter application.
+- 📱 Kullanıcı Kaydı (Email/Şifre ile)
+- 🔐 Giriş yapma
+- 🎨 Modern arayüz
+- ☁️ Firebase Authentication entegrasyonu
 
-A few resources to get you started if this is your first Flutter project:
+> **Not:** Firebase üzerinden kayıt sırasında hata mesajları kullanıcıya bildirilir.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🔧 Kullanılan Teknolojiler
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Flutter](https://flutter.dev/)
+- [Firebase Authentication](https://firebase.google.com/docs/auth)
+- Dart
+
+## 🛠️ Kurulum
+
+Projeyi klonlayın:
+
+```bash
+git clone https://github.com/kullaniciadi/DersAI.git
+cd DersAI
