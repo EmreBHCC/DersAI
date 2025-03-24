@@ -41,10 +41,10 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'YOUR-API-KEY',  // google-services.json'dan alınacak
-    appId: 'YOUR-APP-ID',    // google-services.json'dan alınacak
-    messagingSenderId: 'YOUR-SENDER-ID', // google-services.json'dan alınacak
-    projectId: 'YOUR-PROJECT-ID', // google-services.json'dan alınacak
-    storageBucket: 'YOUR-STORAGE-BUCKET', // google-services.json'dan alınacak
+    apiKey: 'AIzaSyDVrVlY9wOdTqoT9nkF-Uaz8ar2z4AHWTY',
+    appId: '1:397672620633:android:6613ae1f90c55f532e8748',
+    messagingSenderId: '397672620633',
+    projectId: 'dersai-adbc7',
+    storageBucket: 'dersai-adbc7.firebasestorage.app',
   );
-} 
+}

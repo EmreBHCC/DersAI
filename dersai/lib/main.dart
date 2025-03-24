@@ -1,25 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'firebase_options.dart';
 import 'splash_screen.dart';
 import 'login_screen.dart';
 import 'register_screen.dart';
 import 'home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-Future<void> main() async {
+Future<UserCredential> registerWithEmail(String email, String password) async {
+  return await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    email: email,
+    password: password,
+  );
+}
+
+Future<UserCredential> loginWithEmail(String email, String password) async {
+  return await FirebaseAuth.instance.signInWithEmailAndPassword(
+    email: email,
+    password: password,
+  );
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  print('🔥 App starting...'); // <- bu satır
   try {
-    WidgetsFlutterBinding.ensureInitialized();
-    print('Initializing Firebase...');
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    print('Firebase initialized successfully');
+    print('✅ Firebase initialized');
     runApp(MyApp());
-  } catch (e, stackTrace) {
-    print('Error during initialization: $e');
-    print('Stack trace: $stackTrace');
-    // Run the app even if Firebase fails
-    runApp(MyApp());
+  } catch (e, stack) {
+    print('❌ Firebase error: $e');
+    print(stack);
+    runApp(MaterialApp(home: Scaffold(body: Text('Firebase init error'))));
   }
 }
 
@@ -29,9 +45,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'DersAI',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       initialRoute: '/',
       routes: {
         '/': (context) => SplashScreen(),

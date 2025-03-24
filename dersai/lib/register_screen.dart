@@ -7,15 +7,35 @@ class RegisterScreen extends StatelessWidget {
   final nameController = TextEditingController();
 
   void register(BuildContext context) async {
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-      Navigator.pushReplacementNamed(context, '/home');
-    } catch (e) {
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+    final name = nameController.text.trim();
+
+    if (email.isEmpty || password.isEmpty || name.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Kayıt Hatası: ${e.toString()}")),
+        SnackBar(content: Text("Lütfen tüm alanları doldurunuz")),
+      );
+      return;
+    }
+
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+
+      // Kullanıcı adını güncelle
+      await userCredential.user!.updateDisplayName(name);
+
+      Navigator.pushReplacementNamed(context, '/home');
+    } on FirebaseAuthException catch (e) {
+      String message = "Kayıt olurken bir hata oluştu.";
+      if (e.code == 'email-already-in-use') {
+        message = "Bu email zaten kullanılıyor.";
+      } else if (e.code == 'weak-password') {
+        message = "Şifre çok zayıf.";
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message)),
       );
     }
   }

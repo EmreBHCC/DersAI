@@ -6,15 +6,32 @@ class LoginScreen extends StatelessWidget {
   final passwordController = TextEditingController();
 
   void signIn(BuildContext context) async {
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Lütfen email ve şifre giriniz")),
+      );
+      return;
+    }
+
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
+        email: email,
+        password: password,
       );
       Navigator.pushReplacementNamed(context, '/home');
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
+      String message = "Bir hata oluştu.";
+      if (e.code == 'user-not-found') {
+        message = "Kullanıcı bulunamadı.";
+      } else if (e.code == 'wrong-password') {
+        message = "Hatalı şifre.";
+      }
+
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Hata: ${e.toString()}")),
+        SnackBar(content: Text(message)),
       );
     }
   }
@@ -28,8 +45,16 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Giriş Yap', style: TextStyle(fontSize: 24)),
-            TextField(controller: emailController, decoration: InputDecoration(labelText: 'E-mail')),
-            TextField(controller: passwordController, decoration: InputDecoration(labelText: 'Şifre'), obscureText: true),
+            TextField(
+              controller: emailController,
+              decoration: InputDecoration(labelText: 'E-mail'),
+              keyboardType: TextInputType.emailAddress,
+            ),
+            TextField(
+              controller: passwordController,
+              decoration: InputDecoration(labelText: 'Şifre'),
+              obscureText: true,
+            ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => signIn(context),

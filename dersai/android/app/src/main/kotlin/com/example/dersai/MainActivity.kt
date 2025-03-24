@@ -1,4 +1,4 @@
-package com.example.dersai
+package com.examples.dersai
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "397672620633",
+    "project_id": "dersai-adbc7",
+    "storage_bucket": "dersai-adbc7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397672620633:android:6613ae1f90c55f532e8748",
+        "android_client_info": {
+          "package_name": "com.examples.dersai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVrVlY9wOdTqoT9nkF-Uaz8ar2z4AHWTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
