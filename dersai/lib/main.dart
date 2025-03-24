@@ -9,12 +9,17 @@ import 'home_screen.dart';
 Future<void> main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
+    print('Initializing Firebase...');
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+    print('Firebase initialized successfully');
     runApp(MyApp());
-  } catch (e) {
-    print('Firebase initialization error: $e');
+  } catch (e, stackTrace) {
+    print('Error during initialization: $e');
+    print('Stack trace: $stackTrace');
+    // Run the app even if Firebase fails
+    runApp(MyApp());
   }
 }
 
