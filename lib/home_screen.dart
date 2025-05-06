@@ -19,7 +19,10 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        leading: Icon(Icons.menu, color: Colors.white),
+        leading: IconButton(
+          icon: Icon(Icons.menu, color: Colors.white),
+          onPressed: () {},
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.account_circle_outlined, color: Colors.white),
@@ -46,8 +49,8 @@ class HomeScreen extends StatelessWidget {
                     icon: Icon(Icons.add),
                     label: Text("Yeni not ekle"),
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.black,
-                      backgroundColor: Colors.white,
+                      primary: Colors.white,
+                      onPrimary: Colors.black,
                       elevation: 2,
                       side: BorderSide(color: Colors.grey),
                     ),
@@ -76,22 +79,21 @@ class HomeScreen extends StatelessWidget {
             ),
             SizedBox(height: 24),
             Center(
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.grey[300]!),
-                  foregroundColor: MaterialStateProperty.all(Colors.black),
-                  padding: MaterialStateProperty.all(
-                    EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-                  ),
-                  textStyle: MaterialStateProperty.all(
-                    TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                  ),
-                ),
+  child: ElevatedButton(
+    onPressed: () {},
+    style: ElevatedButton.styleFrom(
+      primary: Colors.grey[300], // arka plan
+      onPrimary: Colors.black,   // yazı rengi
+      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+      textStyle: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+      ),
+    ),
+    child: Text("Direkt Tanıma Yapın"),
+  ),
+),
 
-                child: Text("Direkt Tanıma Yapın"),
-              ),
-            ),
             SizedBox(height: 24),
           ],
         ),
@@ -99,14 +101,19 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         color: Colors.indigo[900],
-        child: Container(
+        child: SizedBox(
           height: 70,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Icon(Icons.chat_bubble_outline, color: Colors.white),
-              Spacer(), // FAB için boşluk
-              Icon(Icons.download_outlined, color: Colors.white),
+              IconButton(
+                icon: Icon(Icons.chat_bubble_outline, color: Colors.white),
+                onPressed: () {},
+              ),
+              Spacer(),
+              IconButton(
+                icon: Icon(Icons.download_outlined, color: Colors.white),
+                onPressed: () {},
+              ),
             ],
           ),
         ),
@@ -197,3 +204,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+p 
